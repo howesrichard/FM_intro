@@ -2,47 +2,40 @@
 
 [text](https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet)
 
----
+## Basic Workflow with Github codespaces
+1. Create repo in GitHub in the browser
+<img width="657" height="158" alt="New repo" src="https://github.com/user-attachments/assets/76c3fe19-8f7f-4ef1-8a08-951b4fc8b368" />
+<img width="1590" height="752" alt="Repo setup" src="https://github.com/user-attachments/assets/9149f0bc-d5c3-47ba-b522-c08a76e838aa" />
 
-## Creating Repositories
+2. Launch Codespaces on the new repo
+<img width="966" height="233" alt="Creating a codespace" src="https://github.com/user-attachments/assets/d6252168-ef59-4235-acea-7cbdb218bab8" />
 
-```bash
-# Initialize new repo
-git init
+3. Create a file such as README directly in the VSCode running on the Codespaces. 
 
-# Clone existing repo
-git clone <url>
-
-# Clone specific branch
-git clone -b <branch> <url>
-```
-
----
-
-## Basic Workflow
+Then start doing git commands!
 
 ```bash
-# Check status
-git status
+# Check status. Files which have changed since last commit/push AND staged are in green.
+git status (important)
 git status -s                    # Short format
 
-# Add files to staging
+# 1) Add files to staging (important).
 git add <file>                   # Add specific file
 git add .                        # Add all changes
 git add *.py                     # Add all Python files
-git add --all                    # Add all (including deletions)
+git add --all                    # Add all (including deletions) (personal favourite JY)
 
-# Commit changes
-git commit -m "message"          # Commit with message
+# 2) Commit changes (important)
+git commit -m "message"          # Commit with message. Make sure the message is clear and not keyboard spam for the sake of a message.
 git commit -am "message"         # Add and commit tracked files
 git commit --amend               # Modify last commit
 
-# View changes
-git diff                         # Unstaged changes
-git diff --staged                # Staged changes
-git diff <file>                  # Changes in specific file
+# 3) Push changes (important)
+git push                         # To tracking branch
+git push --all                   # Push all branches
 ```
 
+If you master the above, then you are 90% there in your git learning journey!
 ---
 
 ## Branches
@@ -50,8 +43,6 @@ git diff <file>                  # Changes in specific file
 ```bash
 # List branches
 git branch                       # Local branches
-git branch -a                    # All branches (local + remote)
-git branch -r                    # Remote branches
 
 # Create branch
 git branch <name>                # Create branch
@@ -96,12 +87,6 @@ git pull                         # From tracking branch
 git pull <remote> <branch>       # From specific branch
 git pull --rebase                # Pull with rebase
 
-# Push changes
-git push                         # To tracking branch
-git push <remote> <branch>       # To specific branch
-git push -u <remote> <branch>    # Set upstream and push
-git push --all                   # Push all branches
-git push --tags                  # Push all tags
 ```
 
 ---
@@ -145,7 +130,7 @@ git restore --staged <file>      # Modern syntax
 # Undo commits
 git reset --soft HEAD~1          # Undo commit, keep changes staged
 git reset HEAD~1                 # Undo commit, unstage changes
-git reset --hard HEAD~1          # Undo commit, discard changes
+git reset --hard HEAD~1          # Undo commit, discard changes (important)
 
 # Revert commit (create new commit)
 git revert <commit>              # Revert specific commit
@@ -171,23 +156,12 @@ git diff <commit1> <commit2>     # Between commits
 
 ### Start new project
 ```bash
-git init
-git add .
+git status
+[add new python file hello.py with code]
+git status
+git add hello.py
 git commit -m "Initial commit"
-git remote add origin <url>
-git push -u origin main
-```
-
-### Clone and contribute
-```bash
-git clone <url>
-cd <repo>
-git checkout -b feature-branch
-# Make changes
-git add .
-git commit -m "Add feature"
-git push -u origin feature-branch
-# Create Pull Request on GitHub
+git push
 ```
 
 ### Fix merge conflict
@@ -255,3 +229,23 @@ git branch -d feature/my-feature
 ---
 
 **Print this and keep it at your desk!** 📋
+
+Extra:
+
+If you are working locally (not recommended for beginners in this module as Github codespaces is preferred): 
+---
+
+## Creating Repositories
+
+```bash
+# Initialize new repo
+git init
+
+# Clone existing repo
+git clone <url>
+
+# Clone specific branch
+git clone -b <branch> <url>
+```
+
+---
