@@ -1,5 +1,40 @@
 # Git Command Quick Reference Cheat Sheet
 
+
+## Introduction
+
+Git is a version control system that helps you track changes in your code. GitHub is a platform for hosting Git repositories online and collaborating with others.
+
+### Why Use Git?
+- Track changes in your code over time
+- Collaborate with team members
+- Back up your work to the cloud
+- Revert to previous versions if something breaks
+- Work on multiple features simultaneously
+
+  
+## Basic Concepts
+
+### Repository (Repo)
+A folder that Git tracks. Contains your project files and the `.git` folder with all version history.
+
+### Commit
+A snapshot of your project at a specific point in time. Like a save point in a video game.
+
+### Branch
+A separate line of development. Allows you to work on features without affecting the main code.
+
+### Remote
+A version of your repository hosted on GitHub (or another service).
+
+### High level overview: Working Directory → Staging Area → Repository
+
+```
+  git status -> git add ->  git commit -> git push
+```
+
+---
+
 [text](https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet)
 
 ## Basic Workflow with Github codespaces
@@ -194,13 +229,27 @@ git commit -m "Corrected commit"
 ## Pro Tips
 
 1. **Commit early, commit often** - Small, logical commits are better
-2. **Write good messages** - Future you will thank present you
+2. **Write good messages** - Future you will thank present you.
+   
+**Good commit messages:**
+```bash
+git commit -m "Add Lab 5 on lists and dictionaries"
+git commit -m "Fix bug in portfolio calculation function"
+git commit -m "Update README with installation instructions"
+git commit -m "Complete exercises 1-4 in Lab 7"
+```
+
+**Bad commit messages:**
+```bash
+git commit -m "stuff"          # Too vague
+git commit -m "asdfgh"         # Meaningless
+git commit -m "changes"        # Not descriptive
+```
+
 3. **Pull before push** - Avoid conflicts
 4. **Use branches** - Keep main stable
-5. **Review before commit** - Use `git diff` and `git status`
-6. **Never commit secrets** - Use .gitignore
-7. **Read error messages** - Git is usually helpful
-8. **Practice daily** - Best way to learn
+5. **Review before commit** - Use `git status`
+6. **Read error messages** - Git is usually helpful
 
 ---
 
@@ -232,20 +281,50 @@ git branch -d feature/my-feature
 
 Extra:
 
-If you are working locally (not recommended for beginners in this module as Github codespaces is preferred): 
----
 
-## Creating Repositories
+## Troubleshooting
+
+### Problem: Merge Conflicts
+
+When Git can't automatically merge changes:
 
 ```bash
-# Initialize new repo
-git init
+# You'll see something like:
+Auto-merging lab05.ipynb
+CONFLICT (content): Merge conflict in lab05.ipynb
 
-# Clone existing repo
-git clone <url>
+# Open the file and look for:
+Your changes
 
-# Clone specific branch
-git clone -b <branch> <url>
+# Fix the conflict by choosing which code to keep
+# Remove the conflict markers
+# Then:
+git add lab05.ipynb
+git commit -m "Resolve merge conflict in lab05"
 ```
 
----
+
+### Problem: Need to Undo a Push
+
+```bash
+# If you pushed something wrong (use with caution!)
+git revert HEAD
+git push origin main
+
+# Or if no one else has pulled yet (dangerous!):
+git reset --hard HEAD~1
+git push --force origin main
+```
+
+### Problem: Forgot to Pull Before Making Changes
+
+```bash
+# You have local changes and remote has new commits
+git pull origin main   # Get remote changes
+git stash pop          # Reapply your changes
+# Resolve any conflicts
+git add .
+git commit -m "Your message"
+git push origin main
+```
+
