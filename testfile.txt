@@ -1,7 +1,0 @@
-This is a test file in order to practice git stuff
-
-So I now making a change to the file that will be the subject of a commit
-
-howesrichard-tester making a change to the file
-
-howesrichard-tester making another change after CODEOWNERS file created
